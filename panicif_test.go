@@ -12,3 +12,9 @@ func Test_Err(t *testing.T) {
 	ft := ftest.New(t)
 	ft.PanicsSubstr(func() { panicif.Err(fmt.Errorf("Foo")) }, "Foo")
 }
+
+func Test_True(t *testing.T) {
+	ft := ftest.New(t)
+	ft.PanicsSubstr(func() { panicif.True(true, "Foo") }, "Foo")
+	ft.PanicsSubstr(func() { panicif.True(true, "Foo %s", "bar") }, "Foo bar")
+}

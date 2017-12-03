@@ -12,9 +12,20 @@ don't use it for a critical piece of code
 */
 package panicif
 
+import (
+	"fmt"
+)
+
 // Err panics with a given argument if the argument isn't nil
 func Err(err error) {
 	if err != nil {
 		panic(err)
+	}
+}
+
+// True panics if the first argument is true
+func True(cond bool, format string, a ...interface{}) {
+	if cond {
+		panic(fmt.Errorf(format, a...))
 	}
 }
