@@ -18,3 +18,9 @@ func Test_True(t *testing.T) {
 	ft.PanicsSubstr(func() { panicif.True(true, "Foo") }, "Foo")
 	ft.PanicsSubstr(func() { panicif.True(true, "Foo %s", "bar") }, "Foo bar")
 }
+
+func Test_False(t *testing.T) {
+	ft := ftest.New(t)
+	ft.PanicsSubstr(func() { panicif.False(false, "Foo") }, "Foo")
+	ft.PanicsSubstr(func() { panicif.False(false, "Foo %s", "bar") }, "Foo bar")
+}
