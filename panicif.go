@@ -29,3 +29,10 @@ func True(cond bool, format string, a ...interface{}) {
 		panic(fmt.Errorf(format, a...))
 	}
 }
+
+// False panics if the first argument is true
+func False(cond bool, format string, a ...interface{}) {
+	if !cond {
+		panic(fmt.Errorf(format, a...))
+	}
+}
