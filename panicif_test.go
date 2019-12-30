@@ -53,6 +53,7 @@ func Test_NotNil(t *testing.T) {
 		panicif.NotNil(foo, "Foo")
 		panicif.NotNil((*struct{})(nil), "Foo")
 		panicif.NotNil((func())(nil), "Foo")
+		panicif.NotNil(nil, "Foo")
 
 	}()
 	ft.Nil(err)

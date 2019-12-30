@@ -38,14 +38,14 @@ func False(cond bool, format string, a ...interface{}) {
 	}
 }
 
-// Nil panics if the first argument is Nil
+// Nil panics if the first argument is a nil interface, pointer, map, array, slice, chan or funcion
 func Nil(val interface{}, format string, a ...interface{}) {
 	if isNil(val) {
 		panic(fmt.Errorf(format, a...))
 	}
 }
 
-// NotNil panics if the first argument is Nil
+// NotNil panics if the first argument isn't a nil interface, pointer, map, array, slice, chan or funcion
 func NotNil(val interface{}, format string, a ...interface{}) {
 	if !isNil(val) {
 		panic(fmt.Errorf(format, a...))
