@@ -14,6 +14,7 @@ package panicif
 
 import (
 	"fmt"
+	"reflect"
 )
 
 // Err panics with a given argument if the argument isn't nil
@@ -35,4 +36,30 @@ func False(cond bool, format string, a ...interface{}) {
 	if !cond {
 		panic(fmt.Errorf(format, a...))
 	}
+}
+
+// Nil panics if the first argument is Nil
+func Nil(val interface{}, format string, a ...interface{}) {
+	if isNil(val) {
+		panic(fmt.Errorf(format, a...))
+	}
+}
+
+// NotNil panics if the first argument is Nil
+func NotNil(val interface{}, format string, a ...interface{}) {
+	if !isNil(val) {
+		panic(fmt.Errorf(format, a...))
+	}
+}
+
+func isNil(v interface{}) bool {
+	return v == nil || isNilable(v) && reflect.ValueOf(v).IsNil()
+}
+
+func isNilable(v interface{}) bool {
+	switch reflect.TypeOf(v).Kind() {
+	case reflect.Ptr, reflect.Map, reflect.Array, reflect.Chan, reflect.Slice:
+		return true
+	}
+	return false
 }
