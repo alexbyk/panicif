@@ -31,6 +31,7 @@ func Test_Nil(t *testing.T) {
 	ft.PanicsSubstr(func() { panicif.Nil(foo, "Foo") }, "Foo")
 	ft.PanicsSubstr(func() { panicif.Nil(nil, "Foo") }, "Foo")
 	ft.PanicsSubstr(func() { panicif.Nil((*struct{})(nil), "Foo") }, "Foo")
+	ft.PanicsSubstr(func() { panicif.Nil((func())(nil), "Foo") }, "Foo")
 	ft.PanicsSubstr(func() { panicif.Nil(nil, "Foo %s", "bar") }, "Foo bar")
 }
 
@@ -51,6 +52,8 @@ func Test_NotNil(t *testing.T) {
 		}()
 		panicif.NotNil(foo, "Foo")
 		panicif.NotNil((*struct{})(nil), "Foo")
+		panicif.NotNil((func())(nil), "Foo")
+
 	}()
 	ft.Nil(err)
 	ft.PanicsSubstr(func() { panicif.NotNil(false, "Foo %s", "bar") }, "Foo bar")

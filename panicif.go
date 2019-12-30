@@ -58,7 +58,7 @@ func isNil(v interface{}) bool {
 
 func isNilable(v interface{}) bool {
 	switch reflect.TypeOf(v).Kind() {
-	case reflect.Ptr, reflect.Map, reflect.Array, reflect.Chan, reflect.Slice:
+	case reflect.Ptr, reflect.Map, reflect.Array, reflect.Chan, reflect.Slice, reflect.Func:
 		return true
 	}
 	return false
