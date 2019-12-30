@@ -1,11 +1,16 @@
 language: go
 
 go:
+  - 1.x
   - 1.9.x
+  - 1.10.x
+  - 1.11.x
+  - 1.12.x
+  - 1.13.x
   - master
 
 install:
-  - go get -u github.com/golang/lint/golint
+  - go get -u golang.org/x/lint/golint
   - go get -u github.com/alexbyk/ftest
 
 script:
